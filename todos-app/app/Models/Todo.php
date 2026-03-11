@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * @property int $id
@@ -26,12 +27,16 @@ class Todo extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'completed', 'created_at', 'updated_at'];
+    protected $fillable = ['title', 'completed', 'created_at', 'updated_at','todo_list_id'];
 
     // protected $table = "the_todos";
 
     public function todoList(): BelongsTo
     {
         return $this->belongsTo(TodoList::class);
+    }
+
+    public function tags():BelongsToMany{
+        return $this->belongsToMany(Tag::class)->withTimestamps();
     }
 }

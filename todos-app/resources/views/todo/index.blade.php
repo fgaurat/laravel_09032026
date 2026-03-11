@@ -18,10 +18,12 @@
         <thead>
             <tr>
                 <th>#</th>
+                <th>TodoList</th>
                 <th>Created</th>
                 <th>Updated</th>
                 <th>Title</th>
                 <th>Completed ?</th>
+                <th>tags</th>
                 <th></th>
             </tr>
         </thead>
@@ -31,10 +33,12 @@
             @forelse ($todos as $todo)
                 <tr>
                     <td>{{ $todo->id }}</td>
+                    <td>{{ $todo->todoList->title }} </td>
                     <td>{{ $todo->created_at }}</td>
                     <td>{{ $todo->updated_at }}</td>
                     <td>{{ $todo->title }}</td>
                     <td>{{ $todo->completed ? 'done' : 'not done' }}</td>
+                    <td>{{$todo->tags->pluck('name')->join(', ')}}</td>
                     <td>
                         <form action="{{ route('todo.destroy', $todo->id) }}" method="POST">
                             @csrf

@@ -30,4 +30,10 @@ class TodoList extends Model
     public function todos():HasMany{
         return $this->hasMany(Todo::class);
     }
+
+    public function completedTodos():HasMany{
+        return $this->hasMany(Todo::class)->where('completed',true);
+    }
+
+
 }

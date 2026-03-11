@@ -21,6 +21,14 @@
             <form action="{{ route('todo.store') }}" method="POST">
                 @csrf
 
+
+                <select name="todo_list_id">
+                    @foreach ($todoLists as $todoList)
+                        <option value="{{ $todoList->id }}">{{$todoList->title}}</option>
+                    @endforeach
+
+                </select>
+
                 <input class="form-control" type="text" name="title" placeholder="Todo title ..." value="{{ old('title') }}">
 
                 <br>

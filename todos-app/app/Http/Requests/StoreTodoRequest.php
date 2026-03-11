@@ -32,6 +32,7 @@ class StoreTodoRequest extends FormRequest
         return [
             'title' => 'required|max:5',
             'completed' => 'boolean',
+            'todo_list_id'=>'numeric'
         ];
     }
 }

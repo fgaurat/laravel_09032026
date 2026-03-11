@@ -13,6 +13,16 @@
 
 namespace App\Models{
 /**
+ * @method static \Database\Factories\TagFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Tag newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Tag newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Tag query()
+ */
+	class Tag extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * @property int $id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -50,6 +60,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TodoList whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TodoList whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Todo> $completedTodos
+ * @property-read int|null $completed_todos_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Todo> $todos
  * @property-read int|null $todos_count
  */

@@ -13,7 +13,9 @@ class TodoListController extends Controller
      */
     public function index()
     {
-        //
+        // $todolists = TodoList::all();
+        $todolists = TodoList::withCount('todos')->withCount("completedTodos")->get();
+        return view('todolist.index',compact('todolists'));
     }
 
     /**

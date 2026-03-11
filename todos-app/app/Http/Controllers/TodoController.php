@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\TodoCreated;
 use App\Http\Requests\StoreTodoRequest;
 use App\Models\Todo;
+use App\Models\TodoList;
 use Illuminate\Http\Request;
 
 class TodoController extends Controller
@@ -14,7 +15,9 @@ class TodoController extends Controller
      */
     public function index()
     {
-        $todos = Todo::all();
+        // $todos = Todo::all();
+        $todos = Todo::with('todoList:id,title')->with('tags:name')->get();
+
         return view('todo.index',compact('todos'));
     }
 
@@ -23,7 +26,8 @@ class TodoController extends Controller
      */
     public function create()
     {
-        return view('todo.create');
+        $todoLists = TodoList::all();
+        return view('todo.create',compact('todoLists'));
     }
 
     /**
@@ -42,7 +46,7 @@ class TodoController extends Controller
         // $validated['completed'] = $request->boolean('completed');
 
         $validated = $request->validated();
-
+        // dd($validated);
         $todo = Todo::create($validated);
 
         TodoCreated::dispatch($todo);
