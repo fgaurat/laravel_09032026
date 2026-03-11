@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\TodoCreated;
 use App\Http\Requests\StoreTodoRequest;
+use App\Models\Tag;
 use App\Models\Todo;
 use App\Models\TodoList;
 use Illuminate\Http\Request;
@@ -27,7 +28,8 @@ class TodoController extends Controller
     public function create()
     {
         $todoLists = TodoList::all();
-        return view('todo.create',compact('todoLists'));
+        $tags = Tag::all();
+        return view('todo.create',compact('todoLists','tags'));
     }
 
     /**
@@ -44,11 +46,11 @@ class TodoController extends Controller
         // ]);
         // $validated['completed'] = isset($validated['completed']) && !empty($validated['completed']) ? $validated['completed']:false;
         // $validated['completed'] = $request->boolean('completed');
+        // dd($validated);
 
         $validated = $request->validated();
-        // dd($validated);
         $todo = Todo::create($validated);
-
+        $todo->tags()->sync($validated['tags'] ?? []);
         TodoCreated::dispatch($todo);
         return redirect()->route('todo.index')->with("status","Todo created !");
     }

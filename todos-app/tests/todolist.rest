@@ -1,0 +1,11 @@
+@baseUrl =http://localhost:8000
+@token=1|8ROCEG0B4qyaTZJWdlf9fblFvy3mwjSs5mmfQthjac98fae4
+###
+GET {{baseUrl}}/api/todolist
+Authorization: Bearer {{token}}
+Accept: application/json
+
+###
+GET {{baseUrl}}/api/todolist/1
+Authorization: Bearer {{token}}
+Accept: application/json

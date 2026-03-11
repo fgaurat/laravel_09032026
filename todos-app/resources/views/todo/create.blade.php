@@ -36,6 +36,18 @@
                 <br>
                 <br>
 
+                <div>
+                    Tags: <br>
+                    @foreach ($tags as $tag)
+                        <div class="form-check">
+                            <input type="checkbox" name="tags[]" id="tag-{{ $tag->id }}" value="{{ $tag->id }}" class="form-check-input">
+                            <label for="tag-{{ $tag->id }}">{{ $tag->name }}</label>
+                        </div>
+                    @endforeach
+
+
+                </div>
+
                 <button type="submit" class="btn btn-primary">Add</button>
                 {{-- <input type="submit" value="Add" class="btn btn-primary"> --}}
 

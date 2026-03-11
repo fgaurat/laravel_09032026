@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\TodoController;
+use App\Http\Controllers\TodoListAPIController;
 use App\Http\Controllers\TodoListController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,3 +15,9 @@ Route::post('/todolist/store',[TodoListController::class,'store'])->name('todoli
 
 
 Route::resource('todo', TodoController::class);
+
+// Route::get('/tokens/create', function (Request $request) {
+//     $token = $request->user()->createToken($request->token_name);
+
+//     return ['token' => $token->plainTextToken];
+// });
